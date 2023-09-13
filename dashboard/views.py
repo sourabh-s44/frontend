@@ -17,17 +17,18 @@ def home(request):
 
 #API CODE STARTS HERE
 #role
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def role_list(request, format=None):
     if request.method == 'GET':
         roles = Role.objects.all()
         serializer = RoleSerializer(roles, many=True)
         return Response({'roles': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = RoleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -47,18 +48,19 @@ def role_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #paymentMode
-@api_view(['GET','PUT'])
+
+@api_view(['GET', 'POST'])
 def paymentMode_list(request, format=None):
     if request.method == 'GET':
         paymentModes = PaymentMode.objects.all()
         serializer = PaymentModeSerializer(paymentModes, many=True)
         return Response({'paymentModes': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = PaymentModeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT', 'DELETE'])
 def paymentMode_details(request, id, format=None):
@@ -77,18 +79,18 @@ def paymentMode_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #statusType
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def statusType_list(request, format=None):
     if request.method == 'GET':
         statusTypes = StatusType.objects.all()
         serializer = StatusTypeSerializer(statusTypes, many=True)
         return Response({'statusTypes': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = StatusTypeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT', 'DELETE'])
 def statusType_details(request, id, format=None):
@@ -107,17 +109,18 @@ def statusType_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #status
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def status_list(request, format=None):
     if request.method == 'GET':
         statuses = Status.objects.all()
         serializer = StatusSerializer(statuses, many=True)
         return Response({'statuses': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = StatusSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -137,17 +140,18 @@ def status_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #user
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def user_list(request, format=None):
     if request.method == 'GET':
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response({'users': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -167,17 +171,18 @@ def user_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #MaterialType
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def materialType_list(request, format=None):
     if request.method == 'GET':
         materialTypes = MaterialType.objects.all()
         serializer = MaterialTypeSerializer(materialTypes, many=True)
         return Response({'materialTypes': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = MaterialTypeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -197,17 +202,18 @@ def materialType_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #Product
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def product_list(request, format=None):
     if request.method == 'GET':
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
         return Response({'products': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -227,18 +233,18 @@ def product_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #CustomerOrder
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def customerOrder_list(request, format=None):
     if request.method == 'GET':
         customerOrders = CustomerOrder.objects.all()
         serializer = CustomerOrderSerializer(customerOrders, many=True)
         return Response({'customerOrders': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = CustomerOrderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT', 'DELETE'])
 def customerOrder_details(request, id, format=None):
@@ -257,17 +263,18 @@ def customerOrder_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #Sensor
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def sensor_list(request, format=None):
     if request.method == 'GET':
         sensors = Sensor.objects.all()
         serializer = SensorSerializer(sensors, many=True)
         return Response({'sensors': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = SensorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -287,17 +294,18 @@ def sensor_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #Vehicle
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def vehicle_list(request, format=None):
     if request.method == 'GET':
         vehicles = Vehicle.objects.all()
         serializer = VehicleSerializer(vehicles, many=True)
         return Response({'vehicles': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = VehicleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -317,17 +325,20 @@ def vehicle_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #OrderDetail
-@api_view(['GET','PUT'])
+
+
+@api_view(['GET', 'POST'])  # Added POST method
 def orderDetail_list(request, format=None):
     if request.method == 'GET':
         orderDetails = OrderDetail.objects.all()
         serializer = OrderDetailSerializer(orderDetails, many=True)
         return Response({'orderDetails': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':  # Changed if to elif
         serializer = OrderDetailSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -347,17 +358,18 @@ def orderDetail_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #OrderPayment
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def orderPayment_list(request, format=None):
     if request.method == 'GET':
         orderPayments = OrderPayment.objects.all()
         serializer = OrderPaymentSerializer(orderPayments, many=True)
         return Response({'orderPayments': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = OrderPaymentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
@@ -377,18 +389,18 @@ def orderPayment_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #warehouse
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def warehouse_list(request, format=None):
     if request.method == 'GET':
         warehouses = Warehouse.objects.all()
         serializer = WarehouseSerializer(warehouses, many=True)
         return Response({'warehouses': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = WarehouseSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT', 'DELETE'])
 def warehouse_details(request, id, format=None):
@@ -407,17 +419,18 @@ def warehouse_details(request, id, format=None):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 #customerInfo
-@api_view(['GET','PUT'])
+@api_view(['GET', 'POST'])
 def customerInfo_list(request, format=None):
     if request.method == 'GET':
         customerInfos = CustomerInfo.objects.all()
         serializer = CustomerInfoSerializer(customerInfos, many=True)
         return Response({'customerInfos': serializer.data})
-    if request.method == 'PUT':
+    elif request.method == 'POST':
         serializer = CustomerInfoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET','PUT', 'DELETE'])
